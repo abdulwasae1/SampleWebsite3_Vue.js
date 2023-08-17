@@ -1,0 +1,20 @@
+// app global css in SCSS form
+@mixin fluid-font-size(
+  $minimumSize,
+  $maximumSize,
+  $minimumViewportWidth,
+  $maximumViewportWidth
+) {
+  font-size: calc(
+    #{$minimumSize}px + (#{$maximumSize} - #{$minimumSize}) *
+      (
+        (100vw - #{$minimumViewportWidth}px) /
+          (#{$maximumViewportWidth} - #{$minimumViewportWidth})
+      )
+  ) !important;
+}
+@for $num from 2 through 30 {
+  .fontsize-#{$num} {
+    @include fluid-font-size($num, ($num * 2 + 2), 300, 1800);
+  }
+}
